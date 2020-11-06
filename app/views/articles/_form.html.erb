@@ -1,37 +1,21 @@
-<%= form_with(model: article, local: true) do |form| %>
-  <% if article.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
-
-      <ul>
-        <% article.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+<%= form_with(model: article, local: true) do |f| %>
+<div class="container form-container  w-50 bg-white p-5 ">
+    <%= render  "shared/notice"%>
+    <div class="form-group">
+        <%= f.label :title  %>
+        <%= f.text_field :title,class: "form-control",:aria=>{:describedby=> "titleHelp"}, :placeholder=> "please enter the article title" %>
+        <small id="titleHelp" class="form-text text-muted"> title must be unique and between (5-15) characters. </small>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :author_id %>
-    <%= form.number_field :author_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :body %>
-    <%= form.text_field :body %>
-  </div>
-
-  <div class="field">
-    <%= form.label :image %>
-    <%= form.text_field :image %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+    <div class="form-group">
+        <%= f.label :body %>
+        <%= f.text_area :body, class: "form-control" %>
+    </div>
+    <div class="form-group">
+        <%= f.label :image %>
+        <%= f.text_field :image, class: "form-control", :placeholder=> "Enter article description." %>
+    </div>
+    <div class="text-center">
+        <%= f.submit "Create" , class: "btn btn-lg btn-info"  %>
+    </div>
+    <% end %>
+</div>
