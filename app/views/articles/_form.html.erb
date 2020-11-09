@@ -8,12 +8,12 @@
         <div class="article-form-title w-100">
             <%= f.text_field :title, :placeholder=> "Title" %>
         </div>
+
+        ############ this is the span ############
         <span class="input article-form-body" role="textbox" contenteditable="true" aria-multiline="true" placeholder=" Start Writing..." name="article[body]" id="article_body" spellcheck="true">99</span>
-        <%
-=begin%>
+        ############ this is the textarea ########
         <%= f.text_area :body, size: "auto",class: "article-form-body", :placeholder=> "Start Writing..." %>
-        <%
-=end%>
+        ##########################################
 
         <%= f.select(:category_id, options_from_collection_for_select(@categories, :id, :name), { include_blank: "Select category" }, { class: 'select-option' } ) %>
         <div class="text-center">
