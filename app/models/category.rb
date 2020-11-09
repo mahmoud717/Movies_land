@@ -1,4 +1,3 @@
 class Category < ApplicationRecord
-    has_many :tags
-    has_many :articles, through: :tags
+    has_many :articles, foreign_key: "category_id"
 end

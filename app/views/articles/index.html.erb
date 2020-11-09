@@ -1,33 +1,32 @@
-<p id="notice"><%= notice %></p>
+<div class="container-fluid p-0">
+    <div class="main-article w-100 mx-0 ">
+        <%= link_to(image_tag(@main_article.image ), article_path(@main_article), class: "w-100")if @main_article.image.attached? %>
+        <div class="main-article-description">
+            <div class="title">
+                <%= @main_article.title.capitalize%>
+            </div>
+            <div class="body">
+                <%= @main_article.body&.capitalize&.truncate(100)%>
+            </div>
+        </div>
 
-<h1>Articles</h1>
+    </div>
+    <div class="categories row w-100 m-0">
+        <% @categories.each do |category| %>
+        <% if category.articles.last %>
+        <div class="category-container col-6 col-lg-3 p-0">
+            <div class="category-image">
+                <%= link_to(image_tag(category.articles.last.image), category_path(category)) %>
+            </div>
+            <div class="category_name">
+                <p><%= category.name.capitalize%></p>
+            </div>
+            <div class="category-article-title">
+                <p><%= category.articles.last.title.capitalize%></p>
+            </div>
+        </div>
+        <%end%>
+        <%end%>
+    </div>
 
-<table>
-    <thead>
-        <tr>
-            <th>Author</th>
-            <th>Title</th>
-            <th>Body</th>
-            <th>Image</th>
-            <th colspan="3"></th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <% @articles.each do |article| %>
-        <tr>
-            <td><%= article.author_id %></td>
-            <td><%= article.title %></td>
-            <td><%= article.body %></td>
-            <td><%= image_tag(article.image, width: 200) %></td>
-            <td><%= link_to 'Show', article %></td>
-            <td><%= link_to 'Edit', edit_article_path(article) %></td>
-            <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-        <% end %>
-    </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Article', new_article_path %>
+</div>

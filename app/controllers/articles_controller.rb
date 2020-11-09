@@ -5,6 +5,8 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     @articles = Article.all
+    @main_article = Article.last
+    @categories = Category.all
   end
 
   # GET /articles/1
@@ -15,10 +17,12 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   def new
     @article = Article.new
+    @categories = Category.all
   end
 
   # GET /articles/1/edit
   def edit
+    @categories = Category.all
   end
 
   # POST /articles
@@ -65,6 +69,6 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:author_id, :title, :body, :image)
+      params.require(:article).permit(:author_id, :title, :body, :image, :category_id)
     end
 end
