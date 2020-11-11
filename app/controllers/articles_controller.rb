@@ -7,7 +7,8 @@ class ArticlesController < ApplicationController
   def index
     @articles = Article.all
     @main_article = Article.last
-    @categories = Category.all
+    @categories = Category.all 
+    
   end
 
   # GET /articles/1
