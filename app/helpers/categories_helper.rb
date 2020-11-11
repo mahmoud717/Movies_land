@@ -1,5 +1,3 @@
 module CategoriesHelper
-    def count(count)
-        
-    end
+  def count(count); end
 end

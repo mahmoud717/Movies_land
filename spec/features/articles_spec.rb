@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature 'Categories', type: :feature do
   before :each do
-    @user1 = User.create!(name: 'mahmoud', email: "mahmoudmohammad717@gmail.com" )
+    @user1 = User.create!(name: 'mahmoud', email: 'mahmoudmohammad717@gmail.com')
   end
 
   scenario 'User1  logs in and checks out articles on root path' do

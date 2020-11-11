@@ -1,21 +1,19 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
-  before_action :logged? , only: [:edit, :update, :destroy, :create, :new]
-  before_action :user? , only: [:edit, :update, :destroy]
+  before_action :set_article, only: %i[show edit update destroy]
+  before_action :logged?, only: %i[edit update destroy create new]
+  before_action :user?, only: %i[edit update destroy]
   # GET /articles
   # GET /articles.json
   def index
     @articles = Article.all
     @main_article = Article.order(vote_counter: :desc).first
-      
-    @categories = Category.all 
-    
+
+    @categories = Category.all
   end
 
   # GET /articles/1
   # GET /articles/1.json
-  def show
-  end
+  def show; end
 
   # GET /articles/new
   def new
@@ -31,14 +29,14 @@ class ArticlesController < ApplicationController
   # POST /articles
   # POST /articles.json
   def create
-    @user = User.find(session["current_user"]["id"])
+    @user = User.find(session['current_user']['id'])
     @article = @user.articles.new(article_params)
     @article.vote_counter = 0
-      if @article.save
-        redirect_to @article, notice: 'Article was successfully created.' 
-      else
-        render :new, notice: 'Article was not created.' 
-      end
+    if @article.save
+      redirect_to @article, notice: 'Article was successfully created.'
+    else
+      render :new, notice: 'Article was not created.'
+    end
   end
 
   # PATCH/PUT /articles/1
@@ -66,22 +64,26 @@ class ArticlesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_article
-      @article = Article.find(params[:id])
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_article
+    @article = Article.find(params[:id])
+  end
+
+  def user?
+    if @article.user.id == session['current_user']['id'] || session['current_user']['admin'] == true
+      true
+    else
+      redirect_to root_path, notice: "HaHaHa nice try, unfortunally you can't edit or delete another user's Article."
     end
-    def user?
-      if @article.user.id == session["current_user"]["id"] || session["current_user"]["admin"] == true
-        true
-      else 
-        redirect_to root_path, notice: "HaHaHa nice try, unfortunally you can't edit or delete another user's Article."
-      end
-    end
-    def logged?
-      session.key?("current_user") ? true : false
-    end
-    # Only allow a list of trusted parameters through.
-    def article_params
-      params.require(:article).permit(:author_id, :title, :body, :image, :category_id)
-    end
+  end
+
+  def logged?
+    session.key?('current_user') ? true : false
+  end
+
+  # Only allow a list of trusted parameters through.
+  def article_params
+    params.require(:article).permit(:author_id, :title, :body, :image, :category_id)
+  end
 end

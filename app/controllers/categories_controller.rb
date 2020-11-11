@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
-  before_action :logged? , only: [:edit, :update, :destroy, :new, :create]
-  before_action :admin? , only: [:edit, :update, :destroy, :new, :create]
+  before_action :set_category, only: %i[show edit update destroy]
+  before_action :logged?, only: %i[edit update destroy new create]
+  before_action :admin?, only: %i[edit update destroy new create]
 
   # GET /categories
   # GET /categories.json
@@ -12,10 +12,9 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
-    @category = Category.find(params[:id]) 
+    @category = Category.find(params[:id])
     @articles = @category.articles.order(created_at: :desc).limit(4)
     @count = 0
-  
   end
 
   # GET /categories/new
@@ -24,8 +23,7 @@ class CategoriesController < ApplicationController
   end
 
   # GET /categories/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /categories
   # POST /categories.json
@@ -68,24 +66,26 @@ class CategoriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_category
-      @category = Category.find(params[:id])
-    end
 
-    def admin?
-      
-      if session["current_user"]["admin"] == true
-        true
-      else 
-        redirect_to root_path, notice: "HaHaHa nice try, unfortunally you can't Create, Edit or Delete any categories."
-      end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_category
+    @category = Category.find(params[:id])
+  end
+
+  def admin?
+    if session['current_user']['admin'] == true
+      true
+    else
+      redirect_to root_path, notice: "HaHaHa nice try, unfortunally you can't Create, Edit or Delete any categories."
     end
-    def logged?
-      session.key?("current_user") ? true : redirect_to(login_path)
-    end
-    # Only allow a list of trusted parameters through.
-    def category_params
-      params.require(:category).permit(:name)
-    end
+  end
+
+  def logged?
+    session.key?('current_user') ? true : redirect_to(login_path)
+  end
+
+  # Only allow a list of trusted parameters through.
+  def category_params
+    params.require(:category).permit(:name)
+  end
 end
