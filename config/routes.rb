@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   end
   resources :users
   resources :categories
-  get "signup", to: "users#new"
   get "logout", to: "sessions#destroy"
   get "login", to: "sessions#new"
   get "/articles/:article_id/vote", to: "votes#create", as: "vote"

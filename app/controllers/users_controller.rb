@@ -61,6 +61,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def logged?
+    session.key?('current_user') ? true : redirect_to(login_path, notice: 'You have to Login first.')
+  end
+
   def user_params
     params.require(:user).permit(:name, :email, :profile_image)
   end
