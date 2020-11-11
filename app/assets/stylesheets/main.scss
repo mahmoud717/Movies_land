@@ -243,3 +243,55 @@ footer {
       }
     }
   }
+  .category-container-2{
+    min-height: 90vh;
+    .category-article-container{
+      height: 45vh !important;
+      .category-article-image{
+        height: 45vh !important;
+        
+        img{
+          width: 100%;
+          object-fit: cover;
+          height: 45vh !important;
+        }
+      }
+      .category-article-details{
+        img{
+           opacity: 0.1;
+           object-fit: fill;
+        }
+       
+        position: relative;
+        .details{
+          position: absolute;
+          top: 0;
+          width: 100%;
+          .category-name{
+            font-size: 28px;
+            font-weight: 800;
+            color: #F76108;
+            margin: 15px 0;
+            text-decoration: underline  #F76108;
+            text-underline-position: under
+          }
+          .title{
+            font-size: 26px;
+            font-weight: 700;
+            color: #2c1202;
+            margin-bottom: 15px;
+          }
+          .body{
+            font-size: 22px;
+            word-break: break-all;
+          }
+          .read-more{
+            a{
+              color: #F76108;
+              
+            }
+          }
+        }
+      }
+    }
+  }

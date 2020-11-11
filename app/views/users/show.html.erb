@@ -18,5 +18,10 @@
             <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-warning"%>
             <%= link_to 'Delete Account', delete_user_path(@user), class: "btn btn-danger"%>
         </div>
+        <% if admin? %>
+        <div class="mt-4">
+            <%= link_to 'Categories ', categories_path , class: "btn btn-info"%>
+        </div>
+        <% end %>
     </div>
 </div>

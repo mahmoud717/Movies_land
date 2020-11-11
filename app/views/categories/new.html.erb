@@ -1,5 +1,18 @@
-<h1>New Category</h1>
+<%= render  "shared/notice" %>
+<%= form_with(model: @category, local: true) do |form| %>
+<div class="container-fluid bg-white login-container p-5 ">
+    <div class="container form-container  w-50 bg-white p-5 my-5 ">
 
-<%= render 'form', category: @category %>
+        <h1 class="text-center  mb-4 "> Signup </h1>
+        <div class="form-group">
+            <%= form.label :name %>
+            <%= form.text_field :name, class: "form-control", :placeholder=> "Choose a Category name." %>
+        </div>
 
-<%= link_to 'Back', categories_path %>
+        <div class="actions text-center mt-4">
+            <%= form.submit "Create Category" , class: "btn btn-lg btn-info" %>
+
+        </div>
+    </div>
+</div>
+<% end %>

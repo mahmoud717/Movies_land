@@ -12,6 +12,10 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
+    @category = Category.find(params[:id]) 
+    @articles = @category.articles.order(created_at: :desc).limit(4)
+    @count = 0
+  
   end
 
   # GET /categories/new
@@ -82,6 +86,6 @@ class CategoriesController < ApplicationController
     end
     # Only allow a list of trusted parameters through.
     def category_params
-      params.fetch(:category, {})
+      params.require(:category).permit(:name)
     end
 end
