@@ -1,4 +1,4 @@
-class SessionsController < ActionController::Base
+class SessionsController < ApplicationController
     def destroy
         reset_session
         redirect_to root_path

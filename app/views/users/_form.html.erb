@@ -1,27 +1,28 @@
 <%= form_with(model: user, local: true) do |form| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<div class="container-fluid bg-white login-container p-5 ">
+    <div class="container form-container  w-50 bg-white p-5 my-5 ">
 
-      <ul>
-        <% user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+        <h1 class="text-center  mb-4 "> Signup </h1>
+        <div class="form-group">
+            <%= form.label :name %>
+            <%= form.text_field :name, class: "form-control", :placeholder=> "Choose a username." %>
+        </div>
+
+        <div class="form-group">
+            <%= form.label :email %>
+            <%= form.text_field :email, class: "form-control", :placeholder=> "Enter email." %>
+        </div>
+
+        <div class="form-group">
+            <%= form.label :profile_picture %>
+            <%= form.file_field :profile_image, class: "form-control" %>
+        </div>
+
+        <div class="actions text-center mt-4">
+            <%= form.submit "Signup" , class: "btn btn-lg btn-info" %>
+            or
+            <%= link_to  "Login", login_path %>
+        </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+</div>
 <% end %>

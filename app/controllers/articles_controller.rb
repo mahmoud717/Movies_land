@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-
+  before_action :logged? , only: [:edit, :update, :destroy, :create, :new]
+  before_action :user? , only: [:edit, :update, :destroy]
   # GET /articles
   # GET /articles.json
   def index
@@ -66,7 +67,16 @@ class ArticlesController < ApplicationController
     def set_article
       @article = Article.find(params[:id])
     end
-
+    def user?
+      if @article.user.id == session["current_user"]["id"] || session["current_user"]["admin"] == true
+        true
+      else 
+        redirect_to root_path, notice: "HaHaHa nice try, unfortunally you can't edit or delete another user's Article."
+      end
+    end
+    def logged?
+      session.key?("current_user") ? true : false
+    end
     # Only allow a list of trusted parameters through.
     def article_params
       params.require(:article).permit(:author_id, :title, :body, :image, :category_id)

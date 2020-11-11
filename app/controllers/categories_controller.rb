@@ -1,5 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :logged? , only: [:edit, :update, :destroy, :new, :create]
+  before_action :admin? , only: [:edit, :update, :destroy, :new, :create]
 
   # GET /categories
   # GET /categories.json
@@ -67,6 +69,17 @@ class CategoriesController < ApplicationController
       @category = Category.find(params[:id])
     end
 
+    def admin?
+      
+      if session["current_user"]["admin"] == true
+        true
+      else 
+        redirect_to root_path, notice: "HaHaHa nice try, unfortunally you can't Create, Edit or Delete any categories."
+      end
+    end
+    def logged?
+      session.key?("current_user") ? true : redirect_to(login_path)
+    end
     # Only allow a list of trusted parameters through.
     def category_params
       params.fetch(:category, {})

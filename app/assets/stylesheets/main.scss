@@ -114,9 +114,21 @@ footer {
       }
     }
   }
-  .article-form-image{
-    height: 400px;
+  .article-form-top{
+    height: 400px !important;
     background-color: whitesmoke;
+    .article-form-top-container{
+      width: 400px;
+      .image{
+        padding: 0;
+        width: 400px !important;
+        height: 50px !important  ;
+      }
+      .category{
+          height: 50px;
+          width: 400px;
+      }
+    }
   }
   .article-form-title{
     input{
@@ -135,14 +147,99 @@ footer {
     }
   }
   .article-form-body{
-    &:active , &:focus{
-      border: rgb(206, 206, 206);
+    &:active , &:focus , &:hover{
       outline: none;
+      border: 4px solid rgb(236, 236, 236) ;
+      background-color: rgb(253, 250, 250);
     }
     border: none;
-    background-color: whitesmoke;
+    background-color: white;
     font-size: 24px;
     padding: 30px;
-    margin-bottom: 100px ;
+    margin-bottom: 20px ;
     display: block;
+    width: 100%;
+    height: 350px;
+  }
+  .article-title{
+    width: 100%;
+    height: auto;
+    font-size: 34px;
+    padding: 20px;
+    margin: 40px 0 !important;
+    font-weight: 600;
+  }
+  .article-body{
+    width: 100%;
+    height: auto;
+    font-size: 26px;
+    padding: 20px;
+    margin-bottom: 40px;
+  }
+  .comment-show{
+    background-color: rgb(250, 248, 248);
+    padding: 40px;
+    min-height: 200px;
+    margin: 20px 10px;
+    .comment-user-image{
+      
+      img{
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+      }
+    }
+    .comment-content{
+      .comment-user-name{
+        font-size: 28px;
+        margin-bottom: 20px;
+      }
+      .comment-body{
+        font-size: 20px;
+        word-break: break-all;
+      }
+    }
+  } 
+
+  .comment-form{
+    margin: 40px 10px;
+    form{
+      position: relative;
+    textarea.form-control{
+      display: flex;
+      padding: 30px 60px;
+      height: 200px;
+      font-size: 24px;
+    }
+    input.btn{
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+    }
+    
+    
+    }
+  }
+  .login-container{
+    height: 100vh;
+  }
+  .user-container{
+    height: 100vh;
+    .username{
+      font-weight: 500;
+      font-size: 28px;
+      margin: 20px;
+    }
+    .user-email{
+      font-weight: 500;
+      font-size: 20px;
+      margin-bottom: 60px;
+    }
+    .user-image{
+      img{
+        width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      }
+    }
   }

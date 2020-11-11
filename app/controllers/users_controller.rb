@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :logged? , only: [:edit, :update, :destroy]
+  before_action :user? , only: [:edit, :update, :destroy]
 
 
   def index
@@ -42,11 +44,17 @@ class UsersController < ApplicationController
 
 
   def destroy
+    
+    if @user.id == session["current_user"]["id"] 
+      reset_session
+      session.clear
+    end
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to articles_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
+    
   end
 
   private
@@ -54,9 +62,15 @@ class UsersController < ApplicationController
     def set_user
       @user = User.find(params[:id])
     end
-
+    def user?
+      if @user.id == session["current_user"]["id"] || session["current_user"]["admin"] == true
+        true
+      else 
+        redirect_to root_path, notice: "HaHaHa nice try, Unfortunally you can't edit or destroy another user's account."
+      end
+    end
 
     def user_params
-      params.require(:user).permit(:name, :email)
+      params.require(:user).permit(:name, :email, :profile_image)
     end
 end

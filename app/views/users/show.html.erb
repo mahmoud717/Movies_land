@@ -1,14 +1,22 @@
-<p id="notice"><%= notice %></p>
+<div class="container-fluid user-container bg-white p-5">
+    <div class="container text-center p-5">
+        <div class="user-image">
+            <% if @user&.profile_image&.attached? %>
+            <%= image_tag @user.profile_image  %>
+            <% else %>
+            <img class="w-100" src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png">
+            <% end %>
+        </div>
+        <div class="username">
+            @<%= @user.name.capitalize %>
+        </div>
+        <div class="user-email">
+            <%= @user.email.capitalize %>
+        </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+        <div class="user-buttons">
+            <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-warning"%>
+            <%= link_to 'Delete Account', delete_user_path(@user), class: "btn btn-danger"%>
+        </div>
+    </div>
+</div>

@@ -44,9 +44,9 @@
                 </div>
                 <div class="d-flex align-items-center">
                     <%= link_to  "Login |", login_path, class: "mb-0 mx-0 mx-lg-1 hoveractive text-decoration-none "if !logged? %>
-                    <%= link_to  "Signup", signup_path, class: "mb-0 mx-1 hoveractive text-decoration-none" if !logged?%>
-                    <%= link_to  "Logout |", logout_path, class: "mb-0 mx-0 mx-lg-1 hoveractive text-decoration-none" if logged? %>
-                    <%= link_to  "Account", user_path(session["current_user"]["id"]), class: "hoveractive text-decoration-none" if logged? %>
+                    <%= link_to  " Signup", signup_path, class: "mb-0 mx-1 hoveractive text-decoration-none" if !logged?%>
+                    <%= link_to  "Logout | ", logout_path, class: "mb-0 mx-0 mx-lg-1 hoveractive text-decoration-none" if logged? %>
+                    <%= link_to  " Account", user_path(session["current_user"]["id"]), class: "hoveractive text-decoration-none" if logged? %>
                 </div>
             </ul>
         </div>

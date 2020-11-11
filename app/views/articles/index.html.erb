@@ -1,12 +1,13 @@
+<%= render  "shared/notice" %>
 <div class="container-fluid p-0">
     <div class="main-article w-100 mx-0 ">
-        <%= link_to(image_tag(@main_article.image ), article_path(@main_article), class: "w-100")if @main_article.image.attached? %>
+        <%= link_to(image_tag(@main_article&.image ), article_path(@main_article), class: "w-100")if @main_article&.image&.attached? %>
         <div class="main-article-description">
             <div class="title">
-                <%= @main_article.title.capitalize%>
+                <%= @main_article&.title&.capitalize%>
             </div>
             <div class="body">
-                <%= @main_article.body&.capitalize&.truncate(100)%>
+                <%= @main_article&.body&.capitalize&.truncate(100)%>
             </div>
         </div>
 
