@@ -53,8 +53,6 @@ Lint/RaiseException:
   Enabled: false
 Layout/LineLength:
   Enabled: false
-Style/EndOfLine:
-  EnforcedStyle: lf
 Lint/StructNewOverride:
   Enabled: false
 Style/HashEachMethods:
