@@ -6,7 +6,8 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     @articles = Article.all
-    @main_article = Article.last
+    @main_article = Article.order(vote_counter: :desc).first
+      
     @categories = Category.all 
     
   end
@@ -32,6 +33,7 @@ class ArticlesController < ApplicationController
   def create
     @user = User.find(session["current_user"]["id"])
     @article = @user.articles.new(article_params)
+    @article.vote_counter = 0
       if @article.save
         redirect_to @article, notice: 'Article was successfully created.' 
       else

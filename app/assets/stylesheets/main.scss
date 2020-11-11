@@ -247,6 +247,7 @@ footer {
     min-height: 90vh;
     .category-article-container{
       height: 45vh !important;
+      overflow: hidden;
       .category-article-image{
         height: 45vh !important;
         
@@ -259,6 +260,7 @@ footer {
       .category-article-details{
         img{
            opacity: 0.1;
+  
            object-fit: fill;
         }
        
